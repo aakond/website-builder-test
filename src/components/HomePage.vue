@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="navbar">
-      <a href="#">
-        <div class="navbar__icon navbar__icon-phone"></div>
+      <a :class="{active: isActive}" @click="isActive=!isActive" href="#">
+        <div id="icon-phone" class="navbar__icon navbar__icon-phone"></div>
       </a>
-      <a href="#">
-        <div class="navbar__icon navbar__icon-tablet"></div>
+      <a @click="addHighlight" href="#">
+        <div id="icon-tablet" class="navbar__icon navbar__icon-tablet"></div>
       </a>
-      <a href="#">
-        <div class="navbar__icon navbar__icon-monitor"></div>
+      <a @click="addHighlight" href="#">
+        <div id="icon-monitor" class="navbar__icon navbar__icon-monitor"></div>
       </a>
     </div>
     <header class="container">Header</header>
@@ -29,9 +29,19 @@
 </template>
 
 <script>
+/* eslint-disable no-alert, no-console */
+
 export default {
   name: "app",
-  components: {}
+  components: {},
+  data() {
+      return {
+          isActive : false,
+      }
+  },
+  methods: {
+
+  }
 };
 </script >
 
@@ -71,7 +81,7 @@ footer {
     background-repeat: no-repeat;
     background-position: center;
 
-    &:hover {
+    &:hover, &:active {
       background-color: @gray;
     }
 
