@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navbar">
+    <div class="navbar container">
       <a href="#">
         <div id="icon-menu" class="navbar__icon navbar__icon-menu"></div>
       </a>
@@ -14,7 +14,7 @@
         <div id="icon-monitor" class="navbar__icon navbar__icon-monitor"></div>
       </a>
     </div>
-    <header class="container">Header</header>
+    <header class="container"></header>
     <main class="container">
       <div class="flex-container">
         <img
@@ -48,14 +48,14 @@ export default {
   },
   methods: {},
   mounted() {
-      fetch('resources/page-text.json')
-                .then(res => res.json())
-                .then(data => {
-                  this.title = data['title'];
-                  this.paragraph = data['paragraph'];
-                  this.buttonText = data['button'];
-                })
-                .catch(err => console.error(err));
+    fetch("resources/page-text.json")
+      .then(res => res.json())
+      .then(data => {
+        this.title = data["title"];
+        this.paragraph = data["paragraph"];
+        this.buttonText = data["button"];
+      })
+      .catch(err => console.error(err));
   }
 };
 </script >
@@ -69,6 +69,7 @@ export default {
 @dark-gray: #2c2c2c;
 @bg-color: #f97252;
 @max-phone-width: 768px;
+@max-width: 1920px;
 
 header {
   min-height: 60px;
@@ -77,14 +78,14 @@ header {
 }
 
 .navbar {
+  max-width: @max-width;
+  min-height: 60px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  min-height: 60px;
+  align-items: center;  
   background-color: @white;
   border: 1px solid black;
 
@@ -117,7 +118,7 @@ header {
 }
 
 .container {
-  max-width: 100%;
+  max-width: @max-width;
   padding-right: 15px;
   padding-left: 15px;
   margin-left: auto;
@@ -138,13 +139,13 @@ header {
 
   &__item {
     &-image {
-      margin: 20px 30px 0 0;
-      width: 500px;
+      width: 480px;
+      max-width: 100%;
       object-fit: contain;
       align-self: center;
     }
     &-text {
-      padding: 20px;
+      padding: 40px;
       align-self: flex-start;
       flex: 1 1 auto;
       color: @white;
@@ -156,9 +157,9 @@ header {
         font-size: 2em;
         margin-bottom: 1em;
       }
-      
+
       &-paragraph {
-        font-size: 1.2em;        
+        font-size: 1.2em;
         line-height: 1.5em;
         margin-bottom: 2em;
       }
