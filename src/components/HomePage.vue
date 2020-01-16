@@ -138,13 +138,13 @@ header {
 
   &__item {
     &-image {
-      margin: 20px 30px 0 0;
-      width: 500px;
+      width: 480px;
+      max-width: 100%;
       object-fit: contain;
       align-self: center;
     }
     &-text {
-      padding: 20px;
+      padding: 40px;
       align-self: flex-start;
       flex: 1 1 auto;
       color: @white;
