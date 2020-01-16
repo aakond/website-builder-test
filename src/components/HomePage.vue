@@ -139,7 +139,7 @@ header {
   &__item {
     &-image {
       margin: 20px 30px 0 0;
-      width: 400px;
+      width: 500px;
       object-fit: contain;
       align-self: center;
     }
@@ -150,12 +150,16 @@ header {
       color: @white;
 
       &-title {
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        line-height: 1.3em;
         font-size: 2em;
         margin-bottom: 1em;
       }
       
       &-paragraph {
-        font-size: 1em;
+        font-size: 1.2em;        
+        line-height: 1.5em;
         margin-bottom: 2em;
       }
     }
