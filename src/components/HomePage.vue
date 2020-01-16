@@ -135,7 +135,7 @@ header {
 .flex-container {
   display: -ms-flexbox;
   display: flex;
-  height: 450px;
+  min-height: 450px;
   padding: 40px;
   margin-right: -15px;
   margin-left: -15px;
