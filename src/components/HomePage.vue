@@ -25,7 +25,7 @@
         <div class="flex-container__item-text">
           <div class="flex-container__item-text-title">{{ title }}</div>
           <div class="flex-container__item-text-paragraph">{{ paragraph }}</div>
-          <button>{{ buttonText }}</button>
+          <custom-button :onClick="consoleClick" :buttonText="buttonText"></custom-button>
         </div>
       </div>
     </main>
@@ -34,10 +34,13 @@
 
 <script>
 /* eslint-disable no-alert, no-console */
+import Button from './Button.vue'
 
 export default {
   name: "homePage",
-  components: {},
+  components: {
+      'custom-button': Button
+  },
   data() {
     return {
       isActive: false,
@@ -46,7 +49,11 @@ export default {
       buttonText: ""
     };
   },
-  methods: {},
+  methods: {
+      consoleClick() {
+        console.log('Button clicked')
+    }
+  },
   mounted() {
     fetch("resources/page-text.json")
       .then(res => res.json())
@@ -128,6 +135,7 @@ header {
 .flex-container {
   display: -ms-flexbox;
   display: flex;
+  height: 450px;
   padding: 40px;
   margin-right: -15px;
   margin-left: -15px;
