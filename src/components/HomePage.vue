@@ -1,30 +1,34 @@
 <template>
   <div>
     <div class="navbar">
-      <a :class="{active: isActive}" @click="isActive=!isActive" href="#">
+      <a href="#">
+        <div id="icon-menu" class="navbar__icon navbar__icon-menu"></div>
+      </a>
+      <a href="#">
         <div id="icon-phone" class="navbar__icon navbar__icon-phone"></div>
       </a>
-      <a @click="addHighlight" href="#">
+      <a href="#">
         <div id="icon-tablet" class="navbar__icon navbar__icon-tablet"></div>
       </a>
-      <a @click="addHighlight" href="#">
+      <a href="#">
         <div id="icon-monitor" class="navbar__icon navbar__icon-monitor"></div>
       </a>
     </div>
     <header class="container">Header</header>
     <main class="container">
-      <div class="main">
-        <div class="main__item main__item-image">
-          <img
-            class="image"
-            src="./../assets/images/main-image.jpg"
-            alt="Mobirise Mobile App on the phone"
-          />
+      <div class="flex-container">
+        <img
+          class="flex-container__item-image"
+          src="./../assets/images/main-image.jpg"
+          alt="Mobirise Mobile App on the phone"
+        />
+        <div class="flex-container__item-text">
+          <div class="flex-container__item-text-title">{{ title }}</div>
+          <div class="flex-container__item-text-paragraph">{{ paragraph }}</div>
+          <button>{{ buttonText }}</button>
         </div>
-        <div class="main__item main__item-text">Text</div>
       </div>
     </main>
-    <footer class="container">Footer</footer>
   </div>
 </template>
 
@@ -32,15 +36,26 @@
 /* eslint-disable no-alert, no-console */
 
 export default {
-  name: "app",
+  name: "homePage",
   components: {},
   data() {
-      return {
-          isActive : false,
-      }
+    return {
+      isActive: false,
+      title: "",
+      paragraph: "",
+      buttonText: ""
+    };
   },
-  methods: {
-
+  methods: {},
+  mounted() {
+      fetch('resources/page-text.json')
+                .then(res => res.json())
+                .then(data => {
+                  this.title = data['title'];
+                  this.paragraph = data['paragraph'];
+                  this.buttonText = data['button'];
+                })
+                .catch(err => console.error(err));
   }
 };
 </script >
@@ -56,11 +71,9 @@ export default {
 @max-phone-width: 768px;
 
 header {
+  min-height: 60px;
   background-color: @dark-gray;
-}
-
-footer {
-  background-color: @bg-color;
+  color: @white;
 }
 
 .navbar {
@@ -71,7 +84,7 @@ footer {
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  height: 15%;
+  min-height: 60px;
   background-color: @white;
   border: 1px solid black;
 
@@ -81,7 +94,7 @@ footer {
     background-repeat: no-repeat;
     background-position: center;
 
-    &:hover, &:active {
+    &:hover {
       background-color: @gray;
     }
 
@@ -96,12 +109,11 @@ footer {
     &-monitor {
       background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='32px' height='32px' viewBox='0 0 407.484 407.484' style='enable-background:new 0 0 407.484 407.484;' xml:space='preserve'%3E%3Cpath d='M378.939,16.564H28.544C12.805,16.564,0,29.369,0,45.108v219.985c0,15.739,12.805,28.544,28.544,28.544h131.46 l-7.197,33.431h-24.994c-3.723,0-7.278,1.546-9.818,4.268l-34.512,37c-3.646,3.909-4.627,9.608-2.495,14.51 c2.131,4.902,6.967,8.073,12.313,8.073h220.885c0.006-0.001,0.015-0.001,0.02,0c7.415,0,13.427-6.011,13.427-13.426 c0-3.766-1.55-7.168-4.047-9.606l-34.094-36.551c-2.54-2.723-6.096-4.268-9.818-4.268h-24.994l-7.197-33.431h131.459 c15.74,0,28.545-12.805,28.545-28.544V45.108C407.484,29.369,394.68,16.564,378.939,16.564z M371.242,259.737h-335V50.465h335 V259.737z'/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
     }
-  }
-}
 
-.image {
-  width: 100%;
-  text-align: center;
+    &-menu {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:none;%7D%3C/style%3E%3C/defs%3E%3Ctitle/%3E%3Cg data-name='Layer 2' id='Layer_2'%3E%3Cpath d='M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z'/%3E%3Cpath d='M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z'/%3E%3Cpath d='M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z'/%3E%3C/g%3E%3Cg id='frame'%3E%3Crect class='cls-1' height='32' width='32'/%3E%3C/g%3E%3C/svg%3E");
+    }
+  }
 }
 
 .container {
@@ -112,15 +124,13 @@ footer {
   margin-right: auto;
 }
 
-.main {
+.flex-container {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  padding: 40px;
   margin-right: -15px;
   margin-left: -15px;
   background-color: @bg-color;
-  justify-content: space-around;
 
   @media (max-width: @max-phone-width) {
     flex-direction: column;
@@ -128,13 +138,26 @@ footer {
 
   &__item {
     &-image {
-      background-color: pink;
-      flex-basis: 40%;
+      margin: 20px 30px 0 0;
+      width: 400px;
+      object-fit: contain;
+      align-self: center;
     }
-
     &-text {
-      background-color: blue;
-      flex-basis: 50%;
+      padding: 20px;
+      align-self: flex-start;
+      flex: 1 1 auto;
+      color: @white;
+
+      &-title {
+        font-size: 2em;
+        margin-bottom: 1em;
+      }
+      
+      &-paragraph {
+        font-size: 1em;
+        margin-bottom: 2em;
+      }
     }
 
     @media (max-width: @max-phone-width) {
